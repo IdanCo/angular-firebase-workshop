@@ -1,5 +1,5 @@
-<input>
-<button>Send</button>
+<input #messageText>
+<button (click)="onSend(messageText.value)">Send</button>
 
 <ul>
   <li>Good Morning!</li>

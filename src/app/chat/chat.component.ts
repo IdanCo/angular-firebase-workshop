@@ -12,4 +12,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSend(messageText: string) {
+    alert(messageText);
+  }
 }
