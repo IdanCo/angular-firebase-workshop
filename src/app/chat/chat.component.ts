@@ -1,15 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 
+interface Message {
+  user: string;
+  text: string;
+  createdAt: Date;
+}
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  messages: string[] = [
-    'Good Morning!',
-    'Good Afternoon!',
-    'Good evening!',
+  messages: Message[] = [
+    {
+      user: 'John',
+      text: 'Good Morning!',
+      createdAt: new Date()
+    },
+    {
+      user: 'Barbara',
+      text: 'Good Afternoon!',
+      createdAt: new Date()
+    },
+    {
+      user: 'David',
+      text: 'Good Evening!',
+      createdAt: new Date()
+    },
   ];
 
   constructor() { }
@@ -18,6 +36,12 @@ export class ChatComponent implements OnInit {
   }
 
   onSend(messageText: string) {
-    this.messages.push(messageText);
+    const message: Message = {
+      user: 'Idan',
+      text: messageText,
+      createdAt: new Date()
+    };
+
+    this.messages.push(message);
   }
 }

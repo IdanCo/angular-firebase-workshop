@@ -2,5 +2,9 @@
 <button (click)="onSend(messageText.value)">Send</button>
 
 <ul>
-  <li *ngFor="let message of messages">{{ message }}</li>
+  <li *ngFor="let message of messages">
+    <strong>{{ message.user }}</strong>
+    <span>({{ message.createdAt | date:'shortTime' }})</span>:
+    <span>{{ message.text }}</span>
+  </li>
 </ul>
