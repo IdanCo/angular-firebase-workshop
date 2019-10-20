@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  messages: string[] = [
+    'Good Morning!',
+    'Good Afternoon!',
+    'Good evening!',
+  ];
 
   constructor() { }
 

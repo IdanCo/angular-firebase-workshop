@@ -2,7 +2,5 @@
 <button (click)="onSend(messageText.value)">Send</button>
 
 <ul>
-  <li>Good Morning!</li>
-  <li>Good Afternoon!</li>
-  <li>Good evening!</li>
+  <li *ngFor="let message of messages">{{ message }}</li>
 </ul>
