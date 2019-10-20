@@ -1,8 +1,10 @@
-<input #messageText>
-<button (click)="onSend(messageText.value)">Send</button>
+<div class="form-group">
+  <input class="form-control" #messageText>
+</div>
+<button class="btn btn-primary" (click)="onSend(messageText.value)">Send</button>
 
-<ul>
-  <li *ngFor="let message of messages">
+<ul class="mt-3 list-group">
+  <li *ngFor="let message of messages" class="list-group-item">
     <app-message [message]="message"></app-message>
   </li>
 </ul>
