@@ -18,6 +18,6 @@ export class ChatComponent implements OnInit {
   }
 
   onSend(messageText: string) {
-    alert(messageText);
+    this.messages.push(messageText);
   }
 }
