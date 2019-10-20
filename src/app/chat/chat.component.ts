@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Message {
-  user: string;
-  text: string;
-  createdAt: Date;
-}
+import { Message } from '../types/message';
 
 @Component({
   selector: 'app-chat',

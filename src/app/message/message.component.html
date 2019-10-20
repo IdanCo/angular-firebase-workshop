@@ -1,1 +1,3 @@
-<p>message works!</p>
+<strong>{{ message.user }}</strong>
+<span>({{ message.createdAt | date:'shortTime' }})</span>:
+<span>{{ message.text }}</span>
