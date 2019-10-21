@@ -13,7 +13,8 @@ export class ChatComponent implements OnInit {
   constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
-    this.db.collection<Message>('messages', ref => ref.orderBy('createdAt', 'desc')).valueChanges()
+    this.db.collection<Message>('messages', ref => ref.orderBy('createdAt', 'desc'))
+      .valueChanges({ idField: 'id' })
       .subscribe(res => this.messages = res);
   }
 
@@ -27,5 +28,10 @@ export class ChatComponent implements OnInit {
     // this.messages.push(message);
     this.db.collection('messages').add(message)
       .then(res => console.info('Document was created!', res));
+  }
+
+  onStar(message: Message) {
+    this.db.collection('messages').doc(message.id).update({ isStarred: !message.isStarred })
+      .then(res => console.info('Document was updated!', res));
   }
 }

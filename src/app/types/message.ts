@@ -4,4 +4,6 @@ export interface Message {
   user: string;
   text: string;
   createdAt: Date | firebase.firestore.Timestamp;
+  id?: string;
+  isStarred?: boolean;
 }

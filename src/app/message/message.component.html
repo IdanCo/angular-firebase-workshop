@@ -1,3 +1,4 @@
 <strong>{{ message.user }}</strong>
 <span class="text-muted"> ({{ message.createdAt.toDate() | date:'shortTime' }})</span>:
 <span>{{ message.text }}</span>
+<button class="btn btn-warning float-right" (click)="onStar(message)">Star</button>

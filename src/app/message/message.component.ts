@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Message } from '../types/message';
 
 @Component({
@@ -8,10 +8,14 @@ import { Message } from '../types/message';
 })
 export class MessageComponent implements OnInit {
   @Input() message: Message;
+  @Output() starred = new EventEmitter<Message>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onStar(message: Message) {
+    this.starred.emit(message);
+  }
 }
