@@ -13,7 +13,7 @@ export class ChatComponent implements OnInit {
   constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
-    this.db.collection<Message>('messages').valueChanges()
+    this.db.collection<Message>('messages', ref => ref.orderBy('createdAt', 'desc')).valueChanges()
       .subscribe(res => this.messages = res);
   }
 
