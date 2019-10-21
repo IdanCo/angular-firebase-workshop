@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../types/message';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-chat',
@@ -25,7 +26,7 @@ export class ChatComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
   }
@@ -37,6 +38,8 @@ export class ChatComponent implements OnInit {
       createdAt: new Date()
     };
 
-    this.messages.push(message);
+    // this.messages.push(message);
+    this.db.collection('messages').add(message)
+      .then(res => console.info('Document was created!', res));
   }
 }
