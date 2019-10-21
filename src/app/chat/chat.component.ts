@@ -8,27 +8,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  messages: Message[] = [
-    {
-      user: 'John',
-      text: 'Good Morning!',
-      createdAt: new Date()
-    },
-    {
-      user: 'Barbara',
-      text: 'Good Afternoon!',
-      createdAt: new Date()
-    },
-    {
-      user: 'David',
-      text: 'Good Evening!',
-      createdAt: new Date()
-    },
-  ];
+  messages: Message[];
 
   constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
+    this.db.collection<Message>('messages').valueChanges()
+      .subscribe(res => this.messages = res);
   }
 
   onSend(messageText: string) {
