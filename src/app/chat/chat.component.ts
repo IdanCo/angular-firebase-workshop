@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Message } from '../types/message';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-chat',
@@ -10,17 +12,21 @@ import { Observable } from 'rxjs';
 })
 export class ChatComponent implements OnInit {
   messages$: Observable<Message[]>;
+  user: User;
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore,
+              private fireAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.messages$ = this.db.collection<Message>('messages', ref => ref.orderBy('createdAt', 'desc'))
       .valueChanges({ idField: 'id' });
+
+    this.fireAuth.user.subscribe(res => this.user = res);
   }
 
   onSend(messageText: string) {
     const message: Message = {
-      user: 'Idan',
+      user: this.user ? this.user.displayName : 'Anonymous',
       text: messageText,
       createdAt: new Date()
     };
