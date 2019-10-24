@@ -33,7 +33,8 @@ export class ChatComponent implements OnInit {
 
     // this.messages.push(message);
     this.db.collection('messages').add(message)
-      .then(res => console.info('Document was created!', res));
+      .then(res => console.info('Document was created!', res))
+      .catch(err => alert('no message for you!'));
   }
 
   onStar(message: Message) {
